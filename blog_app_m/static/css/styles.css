@@ -1,0 +1,11 @@
+body{
+  background: #fff;
+  margin:0 -15px;
+}
+.navbar{
+    background-color: #828BED !important;
+}
+.container {
+    width: 100%;
+    white-space: nowrap;
+}
