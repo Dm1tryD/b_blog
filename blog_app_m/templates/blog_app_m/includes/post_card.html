@@ -1,5 +1,5 @@
 <div class="card mb-5">
-    <img class="card-img-top" src="https://rozetked.me/images/uploads/dwoilp3BVjlE.jpg" alt="Card image cap">
+    <a href="{{ post.get_absolute_url }}"><img class="card-img-top" src="https://rozetked.me/images/uploads/dwoilp3BVjlE.jpg" alt="Card image cap"></a>
     <div class="card-body">
         <a href="{{ post.get_absolute_url }}"><h5 class="card-title">{{ post.title }}</h5></a>
         <p class="card-text">{{ post.body|truncatewords:40 }}</p>
