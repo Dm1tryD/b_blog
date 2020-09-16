@@ -1,20 +1,12 @@
 {% extends 'blog_app_m/base_blog_app_m.html'%}
 
 {% block title %}
-    content
+    Blog
 {% endblock %}
 
 {% block content %}
     <h1>Posts</h1>
     {% for post in posts %}
-    <div class="card mb-5">
-              <img class="card-img-top" src="https://rozetked.me/images/uploads/dwoilp3BVjlE.jpg" alt="Card image cap">
-              <div class="card-body">
-                <a href="{% url 'post_dital_url' slug=post.slug %}"><h5 class="card-title">{{ post.title }}</h5></a>
-                <p class="card-text">{{ post.body|truncatewords:40 }}</p>
-                <p class="card-text"><small class="text-muted">{{ post.date_pub }}</small></p>
-                <a href="{% url 'post_dital_url' slug=post.slug %}" class="btn btn-light">READ</a>
-              </div>
-    </div>
+        {% include 'blog_app_m\includes\post_card.html' %}
     {% endfor %}
 {% endblock %}

@@ -21,7 +21,7 @@
     <div class="container-fluid">
         <header>
                 <nav class="navbar navbar-expand-lg navbar-light rounded-bottom">
-                    <a class="navbar-brand" href="#">XBLOG</a>
+                    <a class="navbar-brand" href="{% url 'posts_list_url' %}">XBLOG</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"data-target="#navbarNav"
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -29,13 +29,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{% url 'posts_list_url' %}">Posts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Tags</a>
+                                <a class="nav-link" href="{% url 'tags_list_url' %}">Tags</a>
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0 ml-auto">
