@@ -9,4 +9,5 @@
         {% for tag in tags %}
             <p><a href="{{ tag.get_absolute_url }}"> {{ tag.title }}</a></p>
         {% endfor %}
+    <a href="{% url 'tag_create_url' %}"><h2>Create new tag</h2></a>
 {% endblock %}
