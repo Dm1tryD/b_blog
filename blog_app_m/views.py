@@ -25,6 +25,10 @@ class PostUpdate(ObjectUpdateMixin, View):
     model_form = PostForm
     template = 'blog_app_m/post_update.html'
 
+class PostDelete(ObjectDeleteMixin,View):
+    model = Post
+    template = 'blog_app_m/post_delete.html'
+    redirect_url  = 'posts_list_url'
 
 def tags_list(request):
     tags = Tag.objects.all()
