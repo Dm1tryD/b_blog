@@ -9,3 +9,18 @@ body{
     width: 100%;
     white-space: nowrap;
 }
+/******************************
+***********index page************
+******************************/
+
+.posts{
+    display: block;
+    float:left;
+    align-items: left;
+    width: 60%;
+    margin-right: 10%;
+}
+.tags{
+    display:flex;
+    background-color: #c8c8c8;
+}

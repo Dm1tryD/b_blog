@@ -10,7 +10,8 @@ from .forms import TagForm,PostForm
 
 def posts_list(request):
     posts = Post.objects.all()
-    return render(request,'blog_app_m/index.html', context={'posts':posts})
+    tags = Tag.objects.all()
+    return render(request,'blog_app_m/index.html', context={'posts':posts,'tags':tags})
 
 class PostDetail(ObjectDetailMixin,View):
     model = Post

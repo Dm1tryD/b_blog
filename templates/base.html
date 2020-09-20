@@ -42,11 +42,29 @@
                     </div>
                 </nav>
         </header>
-        <div class="blog container mt-5">
-            {% block content %}
-                content
-            {% endblock %}
-        </div>
+        <section>
+            <div class="blog container mt-3">
+                <div class="posts box">
+                    <div class="post">
+                        {% block content %}
+                            content
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="tag box">
+                    <div class="card" style="width: 18rem;text-align:center;">
+                      <div class="card-header">
+                        Tags
+                      </div>
+                        {% block tag-content %}
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">tag.title</li>
+                          </ul>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
 </html>
