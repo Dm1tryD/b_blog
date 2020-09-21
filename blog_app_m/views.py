@@ -7,12 +7,23 @@ from django.views.generic import View
 from .models import Post,Tag
 from .utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin, ObjectDeleteMixin
 from .forms import TagForm,PostForm
+from django.db.models import Q
 from django.core.paginator import Paginator
 
+
+def search(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        posts = Post.objects.filter(Q(title__icontains=search_query) | Q(body__icontains=search_query))
+    else:
+        posts = Post.objects.all()
+    return posts
+
 def posts_list(request):
-    posts = Post.objects.all()
+    posts = search(request)
     tags = Tag.objects.all()
-    paginator = Paginator(posts,5)
+
+    paginator = Paginator(posts, 5)
     page_number = request.GET.get('page', 1)
     page = paginator.get_page(page_number)
 
