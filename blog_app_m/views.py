@@ -7,11 +7,35 @@ from django.views.generic import View
 from .models import Post,Tag
 from .utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin, ObjectDeleteMixin
 from .forms import TagForm,PostForm
+from django.core.paginator import Paginator
 
 def posts_list(request):
     posts = Post.objects.all()
     tags = Tag.objects.all()
-    return render(request,'blog_app_m/index.html', context={'posts':posts,'tags':tags})
+    paginator = Paginator(posts,5)
+    page_number = request.GET.get('page', 1)
+    page = paginator.get_page(page_number)
+
+    is_paginated = page.has_other_pages()
+    if page.has_previous():
+        prev_page_url = '?page={}'.format(page.previous_page_number())
+    else:
+        prev_page_url=''
+
+    if page.has_next():
+        next_page_url = '?page={}'.format(page.next_page_number())
+    else:
+        next_page_url=''
+
+    context = {
+        'page_obj': page,
+        'is_paginated': is_paginated,
+        'next_page_url': next_page_url,
+        'prev_page_url':prev_page_url,
+        'tags': tags
+    }
+
+    return render(request,'blog_app_m/index.html', context=context)
 
 class PostDetail(ObjectDetailMixin,View):
     model = Post
