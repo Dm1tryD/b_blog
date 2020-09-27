@@ -1,6 +1,10 @@
 from django import forms
 from .models import *
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
+from django.views.generic.edit import FormView
+from django.contrib.auth.forms import UserCreationForm
 
 class TagForm(forms.ModelForm):
     class Meta:
@@ -35,3 +39,8 @@ class PostForm(forms.ModelForm):
         if new_slug == 'create':
             raise ValidationError('Slug may not be "Create"')
         return new_slug
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username','email','password1','password2']

@@ -3,6 +3,10 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
+    path('register/', registerPage, name='register_url'),
+    path('login/', loginPage, name='login_url'),
+    path('logout/', logoutUser, name='logout_url'),
+
     path('posts/', posts_list, name='posts_list_url'),
     path('post/create/', PostCreate.as_view(), name="post_create_url"),
     path('post/<str:slug>/', PostDetail.as_view(), name='post_detail_url'),
