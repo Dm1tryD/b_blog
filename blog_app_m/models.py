@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.contrib.auth.models import User
 
 from django.utils.text import slugify
 from time import time
@@ -9,6 +10,7 @@ def gen_slug(s):
     return new_slug+'-'+str(int(time()))
 
 class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="author")
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, blank=True, unique=True)
     body = models.TextField(blank=True, db_index=True)
@@ -35,9 +37,10 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['-date_pub']
+        ordering = ['-id']
 
 class Tag(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="tag_author")
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50,unique=True)
 

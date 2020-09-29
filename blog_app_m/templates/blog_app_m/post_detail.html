@@ -13,5 +13,11 @@
         <p>
             {{ post.body }}
         </p>
+        <p>
+            <div>Author - {{ post.author }}</div>
+        </p>
+        <p>
+            <div>last change {{ post.date_change|date:'d.m.Y' }} </div>
+        </p>
     </div>
 {% endblock %}

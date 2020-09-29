@@ -10,7 +10,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def search(request):
     search_query = request.GET.get('search', '')
@@ -53,7 +53,6 @@ class PostDetail(ObjectDetailMixin,View):
     model = Post
     template = 'blog_app_m/post_detail.html'
 
-
 class PostCreate(ObjectCreateMixin,View):
     model_form = PostForm
     template = 'blog_app_m/post_create.html'
@@ -65,6 +64,7 @@ class PostUpdate(ObjectUpdateMixin, View):
 
 class PostDelete(ObjectDeleteMixin,View):
     model = Post
+    model_form = PostForm
     template = 'blog_app_m/post_delete.html'
     redirect_url  = 'posts_list_url'
 
@@ -87,6 +87,7 @@ class TagUpdate(ObjectUpdateMixin, View):
 
 class TagDelete(ObjectDeleteMixin,View):
     model = Tag
+    model_form = PostForm
     template = 'blog_app_m/tag_delete.html'
     redirect_url  = 'tags_list_url'
 
