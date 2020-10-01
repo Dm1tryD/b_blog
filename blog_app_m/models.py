@@ -59,3 +59,9 @@ class Tag(models.Model):
 
     class Meta:
         ordering = ['title']
+
+class Comments(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, verbose_name="post", related_name="comments_post")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name="comment author")
+    date_create = models.DateField(auto_now_add=True)
+    comment_text = models.TextField()

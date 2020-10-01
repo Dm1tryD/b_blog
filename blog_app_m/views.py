@@ -3,7 +3,7 @@ from django.views.generic import View,CreateView
 
 from .models import Post,Tag
 from .utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin, ObjectDeleteMixin
-from .forms import TagForm,PostForm,CreateUserForm
+from .forms import TagForm,PostForm,CreateUserForm,CommentForm
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.views.generic.edit import FormView
@@ -11,6 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormMixin
 
 def search(request):
     search_query = request.GET.get('search', '')
@@ -50,6 +51,7 @@ def posts_list(request):
     return render(request,'blog_app_m/index.html', context=context)
 
 class PostDetail(ObjectDetailMixin,View):
+    form_class = CommentForm
     model = Post
     template = 'blog_app_m/post_detail.html'
 

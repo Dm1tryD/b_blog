@@ -1,21 +1,45 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import BaseFormSet
-
-
-from django.views.generic import View
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic import DetailView
+from django.views.generic.edit import FormMixin
 
 from .models import *
 
-class ObjectDetailMixin():
+class ObjectDetailMixin(FormMixin,DetailView):
+    form_class = None
     model = None
     template = None
 
+    def get_success_url(self,**kwargs):
+        return reverse_lazy('post_detail_url', args={self.get_object().slug})
+
     def get(self, request, slug):
+        form = self.form_class
         obj = get_object_or_404(self.model, slug__iexact=slug)
-        return render(request, self.template, context={self.model.__name__.lower(): obj})
+        return render(request, self.template, context={self.model.__name__.lower(): obj,'form':form})
+
+    @method_decorator(login_required)
+    def post(self,request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.post = self.get_object()
+        self.object.author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
 
 class ObjectCreateMixin(LoginRequiredMixin):
 
@@ -80,3 +104,4 @@ class ObjectDeleteMixin(LoginRequiredMixin):
         obj = self.model.objects.get(slug__iexact=slug)
         obj.delete()
         return redirect(reverse(self.redirect_url))
+
