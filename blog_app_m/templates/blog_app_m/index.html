@@ -5,21 +5,55 @@
 {% endblock %}
 
 {% block content %}
-    {% for post in page_obj.object_list %}
-        {% include 'blog_app_m\includes\post_card.html' %}
-    {% endfor %}
-{% endblock %}
-
-{% block tag-content %}
-    <div class="card" style="width: 18rem;text-align:center;">
-        <div class="card-header">
-            Tags
+    <section>
+        <div class="content container mt-5">
+            <div class="posts">
+                {% for post in page_obj.object_list %}
+                    {% include 'blog_app_m\includes\post_card.html' %}
+                {% endfor %}
+                <div class="main-paginator">
+                    {% if is_paginated %}
+                      <ul class="pagination">
+                        <li class="page-item {% if not prev_page_url %} disabled {% endif %}">
+                          <a class="page-link" href="{{ prev_page_url }}">Previous</a>
+                        </li>
+                          {% for n in page_obj.paginator.page_range %}
+                            {% if page_obj.number == n %}
+                            <li class="page-item active">
+                              <a class="page-link" href="?page={{ n }}">{{ n }}<span class="sr-only">(current)</span></a>
+                            </li>
+                            {% elif n > page_obj.number|add:-3 and n < page_obj.number|add:+3%}
+                             <li class="page-item">
+                                 <a class="page-link" href="?page={{ n }}">{{ n }}</a>
+                             </li>
+                            {% endif %}
+                          {% endfor %}
+                        <li class="page-item {% if not next_page_url %} disabled {% endif %}">
+                          <a class="page-link" href="{{ next_page_url }}">Next</a>
+                        </li>
+                      </ul>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        {% for tag in tags %}
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
-            </ul>
-        {% endfor %}
-    </div>
-{% endblock %}
-
+        <div class="side-bar">
+            <div class="tag container">
+                {% if tags %}
+                    {% block tag-content %}
+                        <div class="card" style="width: 18rem;text-align:center;">
+                            <div class="card-header">
+                                Latest Tags
+                            </div>
+                                {% for tag in tags %}
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+                                </ul>
+                                {% endfor %}
+                        </div>
+                    {% endblock %}
+                {% else %}
+                {% endif %}
+        </div>
+        </div>
+    </section>
+{% endblock content %}

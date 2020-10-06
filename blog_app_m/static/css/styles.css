@@ -1,132 +1,92 @@
-body{
-  background: #fff;
-  margin:0 -15px;
+html{
+    height: 100%;
 }
+body{
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      height: 100%;
+}
+a:hover {
+    text-decoration: none;
+}
+h1{
+    font-family: 'Montserrat', sans-serif;
+}
+/******************************
+***********navbar************
+******************************/
 .navbar{
+    font-family: 'Montserrat', sans-serif;
     background-color: #828BED !important;
 }
 .container {
     width: 100%;
     white-space: nowrap;
 }
+.logo{
+    margin-left:6%;
+}
+li{
+    padding:5px;
+}
 
 /******************************
 ***********index page************
 ******************************/
+.main-content{
+   flex: 1 0 auto;
+}
 .posts{
     display: block;
-    float:left;
-    align-items: left;
     width: 60%;
+    float:left;
+    margin-right: 10%;
     margin-right: 10%;
 }
-.tags{
-    display:flex;
-    background-color: #c8c8c8;
+.main-paginator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.right-nav .nav-item{
-    margin: 0px 5px 0px 5px;
+.tag{
+    margin-top: 60px;
+    width: 30%;
+    float:left;
+    display:flex;
+}
+.posts:after{
+    clear: both;
+}
+@media screen and (max-width: 768px) {
+    .posts {
+      width: 100%;
+    }
+    .tag{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    }
+    .search-btn{
+        width: 100%;
+    }
 }
 /******************************
-***********registration card************
+***********login************
 ******************************/
+.container-form{
+    margin-top:100px;
+}
 
-.user_card{
-    width: 350px;
-    margin-top: auto;
-    margin-bottom: auto;
-
-    position: relative;
+/******************************
+***********footer************
+******************************/
+footer {
+    background:#f7f7f7;
+    margin-top:25%;
+    padding: 2%;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
-    flex-direction: column;
-    padding: 10px;
-}
-
-.form_container {
-    margin-top: 20px;
-}
-
-#form-title{
-    color: #c8c8c8;
-}
-.login_btn {
-    width: 100%;
-    background: #33ccff !important;
-    color: white !important;
-}
-.login_btn:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-}
-.login_container {
-    padding: 0 2rem;
-}
-.input-group-text {
-    background: #f7ba5b !important;
-    color: white !important;
-    border: 0 !important;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-}
-.input_user,
-.input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-}
-/***login***/
-.user_card {
-    width: 350px;
-    margin-top: auto;
-    margin-bottom: auto;
-    background: #74cfbf;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-
-}
-
-.form_container {
-    margin-top: 20px;
-}
-
-#form-title{
-    color: #fff;
-
-}
-
-.login_btn {
-    width: 100%;
-    background: #33ccff !important;
-    color: white !important;
-}
-.login_btn:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-}
-.login_container {
-    padding: 0 2rem;
-}
-.input-group-text {
-    background: #f7ba5b !important;
-    color: white !important;
-    border: 0 !important;
-    border-radius: 0.25rem 0 0 0.25rem !important;
-}
-.input_user,
-.input_pass:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-}
-
-#messages{
-    background-color: grey;
-    color: #fff;
-    padding: 10px;
-    margin-top: 10px;
+    flex: 0 0 auto;
 }

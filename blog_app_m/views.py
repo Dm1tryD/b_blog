@@ -23,7 +23,7 @@ def search(request):
 
 def posts_list(request):
     posts = search(request)
-    tags = Tag.objects.all()
+    tags = Tag.objects.all()[:5]
 
     paginator = Paginator(posts, 5)
     page_number = request.GET.get('page', 1)
