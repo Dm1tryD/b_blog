@@ -5,20 +5,33 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST" enctype="multipart/form-data" action="{% url 'post_create_url' %}">
-        {% csrf_token %}
-        {{ form.media }}
-        {% for field in form %}
+    <div class="container">
+        <center><h1 class="mt-5">Create post</h1></center>
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data" action="{% url 'post_create_url' %}">
+                {% csrf_token %}
+                {{ form.media }}
                 <div class="form-group">
-                    {% if field.errors %}
-                        <div class="alert alert-danger">
-                            {{ field.errors }}
-                        </div>
-                    {% endif %}
-                    {{ field.label }}
-                    {{ field }}
+                    <label for="title"></label>
+                    <input id="title" name="title" class="form-control form-control-lg" placeholder="Title">
                 </div>
-        {% endfor %}
-         <button type="submit" class="btn btn-primary">Create Post</button>
-    </form>
+                <div class="form-group">
+                    {{ form.body}}
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <select multiple class="form-control" id="tags" name="tags">
+                        {% for tag in form.tags %}
+                            {{ tag }}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="img">Example file input</label>
+                    <input name="img" id="img" type="file" class="form-control-file">
+                </div>
+                <button type="submit" class="btn btn-primary">Create Post</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

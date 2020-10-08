@@ -87,9 +87,21 @@ li{
 ******************************/
 .post-content{
     margin-top:5%;
+    word-wrap: break-word;
 }
-
-
+.post-card{
+    word-wrap: break-word;
+}
+/******************************
+***********post-create************
+******************************/
+.require {
+    color: #666;
+}
+label small {
+    color: #999;
+    font-weight: normal;
+}
 
 /******************************
 ***********footer************

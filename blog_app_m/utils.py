@@ -54,6 +54,7 @@ class ObjectCreateMixin(LoginRequiredMixin):
     def post(self, request):
         image = request.FILES
         bound_form = self.model_form(request.POST, image)
+
         if bound_form.is_valid():
             new_obj = bound_form.save(commit=False)
             new_obj.author = self.request.user
