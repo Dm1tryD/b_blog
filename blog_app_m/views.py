@@ -71,7 +71,7 @@ class PostDelete(ObjectDeleteMixin,View):
     redirect_url  = 'posts_list_url'
 
 def tags_list(request):
-    tags = Tag.objects.all()
+    tags = Tag.objects.order_by('title')
     return render(request, 'blog_app_m/tags_list.html', context={'tags':tags})
 
 class TagDetail(ObjectDetailMixin,View):

@@ -1,9 +1,13 @@
 <div class="post-card mb-5">
     <a href="{{ post.get_absolute_url }}"><h1 class="card-title">{{ post.title|truncatechars:15 }}</h1></a>
     <a href="{{ post.get_absolute_url }}">
+        {% if post.img %}
+        <img class="card-img-top" src="{{ post.img.url }}" alt="Card image cap"></a>
+        {% else %}
         <img class="card-img-top" src="https://rozetked.me/images/uploads/dwoilp3BVjlE.jpg" alt="Card image cap"></a>
+        {% endif %}
     <div class="card-body">
-        <p class="card-text">{{ post.body|truncatechars:20 }}</p>
+        <p class="card-text">{{ post.body|truncatechars:20|safe }}</p>
         <a href="{{ post.get_absolute_url }}" class="btn btn-light">READ</a>
         <p><small class="text-muted">   {{ post.date_pub|date:'d.m.Y' }}</small></p>
     </div>

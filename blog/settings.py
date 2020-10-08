@@ -27,9 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATICFILES_DIRS = [
-    "/web/blog/blog_app_m/static"
-]
+
 
 # Application definition
 
@@ -40,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog_app_m'
+    'blog_app_m',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -123,6 +122,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),
+                    )
+# STATICFILES_DIRS = [
+#     "/web/blog/blog_app_m/static"
+# ]
 LOGIN_URL = 'login_url'

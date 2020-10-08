@@ -22,7 +22,6 @@ h1{
 }
 .container {
     width: 100%;
-    white-space: nowrap;
 }
 .logo{
     margin-left:6%;
@@ -30,10 +29,15 @@ h1{
 li{
     padding:5px;
 }
+.right-bar{
+    margin-right:6%;
+}
 
 /******************************
 ***********index page************
 ******************************/
+
+
 .main-content{
    flex: 1 0 auto;
 }
@@ -44,6 +48,7 @@ li{
     margin-right: 10%;
     margin-right: 10%;
 }
+
 .main-paginator{
     display: flex;
     justify-content: center;
@@ -77,6 +82,14 @@ li{
 .container-form{
     margin-top:100px;
 }
+/******************************
+***********post-detail************
+******************************/
+.post-content{
+    margin-top:5%;
+}
+
+
 
 /******************************
 ***********footer************

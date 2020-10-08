@@ -1,3 +1,5 @@
+from django.conf.urls.static import static
+from django.conf import settings
 from django.urls import path
 
 from .views import *
@@ -18,3 +20,6 @@ urlpatterns = [
     path('tag/<str:slug>/update/', TagUpdate.as_view(), name='tag_update_url'),
     path('tag/<str:slug>/delete/', TagDelete.as_view(), name='tag_delete_url')
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

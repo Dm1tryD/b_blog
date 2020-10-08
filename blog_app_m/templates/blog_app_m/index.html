@@ -7,6 +7,7 @@
 {% block content %}
     <section>
         <div class="content container mt-5">
+            <center><h1 class="mt-5">Latest posts</h1></center>
             <div class="posts">
                 {% for post in page_obj.object_list %}
                     {% include 'blog_app_m\includes\post_card.html' %}

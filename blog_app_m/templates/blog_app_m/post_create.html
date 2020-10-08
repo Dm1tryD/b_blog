@@ -1,13 +1,13 @@
 {% extends 'blog_app_m/base_blog_app_m.html' %}
 
-
 {% block title %}
     Create Post - {{ block.super }}
 {% endblock %}
 
 {% block content %}
-    <form class="" action="{% url 'post_create_url' %}" method="post">
+    <form method="POST" enctype="multipart/form-data" action="{% url 'post_create_url' %}">
         {% csrf_token %}
+        {{ form.media }}
         {% for field in form %}
                 <div class="form-group">
                     {% if field.errors %}

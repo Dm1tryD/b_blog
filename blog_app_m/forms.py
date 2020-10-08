@@ -29,7 +29,7 @@ class TagForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'body', 'tags']#'slug' autocreate slug
+        fields = ['title', 'body', 'tags', 'img']#'slug' autocreate slug
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             for field in self.fields:
@@ -40,6 +40,15 @@ class PostForm(forms.ModelForm):
         if new_slug == 'create':
             raise ValidationError('Slug may not be "Create"')
         return new_slug
+
+    def clean_img(self):
+        image = self.cleaned_data.get('img', False)
+        if image:
+            if image.size > 4 * 1024 * 1024:
+                raise ValidationError("Image file too large ( > 4mb )")
+            return image
+        else:
+            raise ValidationError("Couldn't read uploaded image")
 
 class CreateUserForm(UserCreationForm):
     class Meta:

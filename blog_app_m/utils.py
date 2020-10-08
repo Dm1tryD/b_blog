@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -51,7 +52,8 @@ class ObjectCreateMixin(LoginRequiredMixin):
         return render(request,self.template,context={'form':form})
 
     def post(self, request):
-        bound_form = self.model_form(request.POST)
+        image = request.FILES
+        bound_form = self.model_form(request.POST, image)
         if bound_form.is_valid():
             new_obj = bound_form.save(commit=False)
             new_obj.author = self.request.user

@@ -5,9 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Tags:</h1>
-        {% for tag in tags %}
-            <p><a href="{{ tag.get_absolute_url }}"> {{ tag.title }}</a></p>
-        {% endfor %}
-    <a href="{% url 'tag_create_url' %}"><h2>Create new tag</h2></a>
+    <div class="mt-5">
+        <center><h1>All Tags</h1>
+        <a href="{% url 'tag_create_url' %}"><h2>Create new tag</h2></a></center>
+        <div class="container">
+            <ul>
+            {% for tag in tags %}
+                <li><a href="{{ tag.get_absolute_url }}"> {{ tag.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}

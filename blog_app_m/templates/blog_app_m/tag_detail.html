@@ -6,13 +6,12 @@
 
 
 {% block content %}
-    <div class="container.fluid">
-        <h1 class="mt-5">
-            Posts with "{{ tag.title|title }}" tag:
-        </h1>
-
-        {% for post in tag.posts.all %}
-            {% include 'blog_app_m\includes\post_card.html' %}
-        {% endfor %}
+    <center><h1 class="mt-5">Posts with "{{ tag.title|title }}" tag</h1></center>
+    <div class="content-tag container">
+        <div class="posts">
+            {% for post in tag.posts.all %}
+                {% include 'blog_app_m\includes\post_card.html' %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
