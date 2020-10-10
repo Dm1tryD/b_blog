@@ -1,4 +1,4 @@
-# b_blog
+# form
 
 Universal forum based on the Django framework.
 
