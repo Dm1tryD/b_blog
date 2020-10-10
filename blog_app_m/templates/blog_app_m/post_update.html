@@ -4,20 +4,43 @@
     Edit Post "{{ post.title}}" - {{ block.super }}
 {% endblock %}
 
+
 {% block content %}
-    <form class="" action="{{ post.get_update_url }}" method="post">
-        {% csrf_token %}
-        {% for field in form %}
+
+    <div class="create">
+        <center><h1 class="mt-5">Update post</h1></center>
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data" action="{{ post.get_update_url }}">
+                {% csrf_token %}
+                {{ form.media }}
                 <div class="form-group">
-                    {% if field.errors %}
-                        <div class="alert alert-danger">
-                            {{ field.errors }}
-                        </div>
-                    {% endif %}
-                    {{ field.label }}
-                    {{ field }}
+                    <input value= {{ post.title }} name="title" id="title" type="text"
+                           class="form-control form-control-lg" placeholder="Title">
                 </div>
-            {% endfor %}
-         <button type="submit" class="btn btn-primary">Update Post</button>
-    </form>
+                <div class="form-group">
+                    {{ form.body }}
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <select multiple class="form-control" id="tags" name="tags" value= {{ post.tags }}>
+                        {% for tag in form.tags %}
+                            {{ tag }}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="img">Post image</label>
+                    {{ form.img }}
+                </div>
+<!--                {% for field in form %}-->
+<!--                    <div class="form-group">-->
+<!--                        {% if field.errors %}-->
+<!--                             {{field.label}}{{ field.errors }}-->
+<!--                        {% endif %}-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
+                <button type="submit" class="btn btn-primary">Update Post</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="create">
         <center><h1 class="mt-5">Create post</h1></center>
         <div class="form-group">
             <form method="POST" enctype="multipart/form-data" action="{% url 'post_create_url' %}">
@@ -27,9 +27,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="img">Example file input</label>
+                    <label for="img">Post image</label>
                     <input name="img" id="img" type="file" class="form-control-file">
                 </div>
+                {% for field in form %}
+                    <div class="form-group">
+                        {% if field.errors %}
+                             {{ field.errors }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
                 <button type="submit" class="btn btn-primary">Create Post</button>
             </form>
         </div>

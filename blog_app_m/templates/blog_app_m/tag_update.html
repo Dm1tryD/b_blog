@@ -5,21 +5,28 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="create mt-5">
+        <center><h1 class="mt-5">Update tag</h1></center>
         <form action="{{ tag.get_update_url }}" method="post">
             {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    {% if field.errors %}
-                        <div class="alert-danger">
-                            {{ field.errors }}
-                        </div>
-                    {% endif %}
-                    {{ field.label }}
-                    {{ field }}
-                </div>
-            {% endfor %}
-            <button type="submit" class="btn-primary">Update tag Tag</button>
+            <div class="form-group">
+                <label for="title"></label>
+                <input id="title" name="title"class="form-control form-control-lg" value={{ tag }}>
+            </div>
+            <div class="form-group">
+                <label for="slug"></label>
+                <input id="slug" name="slug" class="form-control form-control-lg" value={{ tag.slug }}>
+            </div>
+            <div class="form-group">
+                {% for field in form %}
+                    <div class="form-group">
+                        {% if field.errors %}
+                             {{ field.errors }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">Update tag</button>
         </form>
     </div>
 {% endblock %}
