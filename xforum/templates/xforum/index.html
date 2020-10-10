@@ -1,16 +1,17 @@
-{% extends 'blog_app_m/base_blog_app_m.html'%}
+{% extends 'xforum/base_xforum.html '%}
 
 {% block title %}
-    Blog
+    xforum
 {% endblock %}
 
 {% block content %}
     <section>
         <div class="content container mt-5">
             <center><h1 class="mt-5">Latest posts</h1></center>
+            <center><a href="{% url 'post_create_url' %}"><h2>Create new post</h2></a></center>
             <div class="posts">
                 {% for post in page_obj.object_list %}
-                    {% include 'blog_app_m\includes\post_card.html' %}
+                    {% include 'xforum\includes\post_card.html' %}
                 {% endfor %}
                 <div class="main-paginator">
                     {% if is_paginated %}
@@ -39,7 +40,7 @@
         </div>
         <div class="side-bar">
             <div class="tag container">
-                {% if tags %}
+                {% if tags and posts %}
                     {% block tag-content %}
                         <div class="card" style="width: 18rem;text-align:center;">
                             <div class="card-header">

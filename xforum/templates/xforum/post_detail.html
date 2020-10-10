@@ -1,4 +1,4 @@
-{% extends 'blog_app_m/base_blog_app_m.html' %}
+{% extends 'xforum/base_xforum.html '%}
 
 {% block title %}
     {{ post.title }} - {{ block.super }}
@@ -16,7 +16,7 @@
             {% else %}
             <img class="top-image" src="https://rozetked.me/images/uploads/dwoilp3BVjlE.jpg" alt="top-image">
             {% endif %}
-            <div class="lead">{{ post.body|safe }}</div>
+            <div class="lead mt-5">{{ post.body|safe }}</div>
             {% for tag in post.tags.all %}
                 <div>tags:<a href="{{ tag.get_absolute_url }}">{{ tag }}</a> </div>
             {% endfor %}

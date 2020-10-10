@@ -1,4 +1,4 @@
-{% extends 'blog_app_m/base_blog_app_m.html'%}
+{% extends 'xforum/base_xforum.html '%}
 
 {% block title %}
     {{ tag.title }} - {{ block.super }}
@@ -10,7 +10,7 @@
     <div class="content-tag container">
         <div class="posts">
             {% for post in tag.posts.all %}
-                {% include 'blog_app_m\includes\post_card.html' %}
+                {% include 'xforum\includes\post_card.html' %}
             {% endfor %}
         </div>
     </div>

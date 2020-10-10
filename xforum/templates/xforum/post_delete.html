@@ -1,15 +1,15 @@
-{% extends 'blog_app_m/base_blog_app_m.html' %}
+{% extends 'xforum/base_xforum.html '%}
 
 {% block title %}
-    Tag Delete {{ tag.title|title }} - {{ block.super }}
+    Tag Delete {{ post.title|title }} - {{ block.super }}
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <form action="{{ tag.post_delete_url }}" method="post">
+        <form action="{{ post.get_delete_url }}" method="post">
             {% csrf_token %}
             <h3>Are u sure?</h3>
-            <a href="{{ tag.get_absolute_url }}">Cancel</a>
+            <a href="{{ post.get_absolute_url }}">Cancel</a>
             <button type="submit" name="button" class="btn btn-danger">Delete</button>
         </form>
     </div>
