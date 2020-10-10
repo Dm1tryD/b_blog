@@ -1,4 +1,4 @@
-# form
+# xforum
 
 Universal forum based on the Django framework.
 
