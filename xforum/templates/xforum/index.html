@@ -40,7 +40,7 @@
         </div>
         <div class="side-bar">
             <div class="tag container">
-                {% if tags and posts %}
+                {% if tag or page_obj.object_list %}
                     {% block tag-content %}
                         <div class="card" style="width: 18rem;text-align:center;">
                             <div class="card-header">
@@ -55,7 +55,7 @@
                     {% endblock %}
                 {% else %}
                 {% endif %}
-        </div>
+            </div>
         </div>
     </section>
 {% endblock content %}

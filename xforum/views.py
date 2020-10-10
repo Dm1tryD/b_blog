@@ -35,7 +35,7 @@ def posts_list(request):
         next_page_url = '?page={}'.format(page.next_page_number())
     else:
         next_page_url=''
-
+    print(page.object_list)
     context = {
         'page_obj': page,
         'is_paginated': is_paginated,

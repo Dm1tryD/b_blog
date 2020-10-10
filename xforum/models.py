@@ -17,8 +17,8 @@ class Post(models.Model):
     img = models.ImageField(null=True, upload_to='images',blank=True)
     body = RichTextField(blank=True, db_index=True,null=True)
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
-    date_pub = models.DateField(auto_now_add=True)
-    date_change = models.DateField(auto_now=True)
+    date_pub = models.DateTimeField(auto_now_add=True)
+    date_change = models.DateTimeField(auto_now=True, null=True)
 
     def get_absolute_url(self):
         """Returns the generated url link"""
@@ -65,5 +65,8 @@ class Tag(models.Model):
 class Comments(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True, verbose_name="post", related_name="comments_post")
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name="comment author")
-    date_create = models.DateField(auto_now_add=True)
+    date_create = models.DateTimeField(auto_now_add=True)
     comment_text = models.TextField()
+
+    class Meta:
+        ordering = ['-date_create']
